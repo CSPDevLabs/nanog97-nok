@@ -9,14 +9,18 @@ RUN sudo mkdir -p -m 755 /etc/apt/keyrings \
     && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 
-# install containerlab and tools
-RUN apt update && apt install -y --no-install-recommends direnv \
-    btop \
-    gh \
-    iputils-ping \
-    dnsutils \
-    skopeo \
-    bat
+# install tools
+RUN rm -f /etc/apt/sources.list.d/yarn.list \
+    && apt update \
+    && apt install -y --no-install-recommends \
+        direnv \
+        btop \
+        gh \
+        iputils-ping \
+        dnsutils \
+        skopeo \
+        bat \
+    && rm -rf /var/lib/apt/lists/*
 
 # install kubectl
 RUN bash -c "curl -LO 'https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl'" && chmod +x kubectl && mv kubectl /usr/local/bin/
