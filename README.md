@@ -17,6 +17,7 @@ Install the following extensions:
 # Workshop Overview
 
 **Proctor(s):** Mau Rojas
+
 **Level:** Intermediate (some knowledge needed)
 
 ## Title: NetOps Stack for Core/Aggregation Operators of Any Size
